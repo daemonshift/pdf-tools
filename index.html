@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tools — Usage interne</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="app">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-inner">
+          <div class="logo">
+            <span class="logo-icon">⬛</span>
+            <span class="logo-text">PDF Tools</span>
+          </div>
+          <span class="header-badge">Usage interne — Confidentiel</span>
+        </div>
+      </header>
+
+      <!-- NAVIGATION -->
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="images">
+          🖼️ Images → PDF
+        </button>
+        <button class="nav-btn" data-tab="merger">
+          🔗 Fusionner PDF
+        </button>
+        <button class="nav-btn" data-tab="splitter">
+          ✂️ Diviser PDF
+        </button>
+      </nav>
+
+      <!-- CONTENU -->
+      <main class="main">
+
+        <!-- TAB 1 : Images → PDF -->
+        <section class="tab active" id="tab-images">
+          <h2 class="section-title">Convertir des images en PDF</h2>
+          <p class="section-desc">Glissez vos fichiers PNG ou JPG. Ils seront convertis en un seul PDF.</p>
+
+          <div class="dropzone" id="dropzone-images">
+            <div class="dropzone-inner">
+              <span class="dropzone-icon">📂</span>
+              <p>Glissez vos images ici</p>
+              <span class="dropzone-hint">PNG, JPG acceptés</span>
+              <input type="file" id="input-images" accept=".png,.jpg,.jpeg" multiple hidden>
+              <button class="btn-secondary" onclick="document.getElementById('input-images').click()">
+                Parcourir les fichiers
+              </button>
+            </div>
+          </div>
+
+          <div class="file-list" id="list-images"></div>
+
+          <div class="actions">
+            <button class="btn-primary" id="btn-convert">
+              Convertir en PDF
+            </button>
+          </div>
+
+          <div class="status" id="status-images"></div>
+        </section>
+
+        <!-- TAB 2 : Merger -->
+        <section class="tab" id="tab-merger">
+          <h2 class="section-title">Fusionner des PDF</h2>
+          <p class="section-desc">Glissez plusieurs PDF. Ils seront fusionnés dans l'ordre affiché.</p>
+
+          <div class="dropzone" id="dropzone-merger">
+            <div class="dropzone-inner">
+              <span class="dropzone-icon">📂</span>
+              <p>Glissez vos PDF ici</p>
+              <span class="dropzone-hint">Fichiers PDF uniquement</span>
+              <input type="file" id="input-merger" accept=".pdf" multiple hidden>
+              <button class="btn-secondary" onclick="document.getElementById('input-merger').click()">
+                Parcourir les fichiers
+              </button>
+            </div>
+          </div>
+
+          <div class="file-list" id="list-merger"></div>
+
+          <div class="actions">
+            <button class="btn-primary" id="btn-merge">
+              Fusionner les PDF
+            </button>
+          </div>
+
+          <div class="status" id="status-merger"></div>
+        </section>
+
+        <!-- TAB 3 : Splitter -->
+        <section class="tab" id="tab-splitter">
+          <h2 class="section-title">Diviser un PDF</h2>
+          <p class="section-desc">Glissez un PDF et choisissez les pages à extraire.</p>
+
+          <div class="dropzone" id="dropzone-splitter">
+            <div class="dropzone-inner">
+              <span class="dropzone-icon">📂</span>
+              <p>Glissez votre PDF ici</p>
+              <span class="dropzone-hint">Un seul fichier PDF</span>
+              <input type="file" id="input-splitter" accept=".pdf" hidden>
+              <button class="btn-secondary" onclick="document.getElementById('input-splitter').click()">
+                Parcourir les fichiers
+              </button>
+            </div>
+          </div>
+
+          <div class="split-options" id="split-options" style="display:none">
+            <label class="label">Pages à extraire</label>
+            <input type="text" id="input-pages" class="input-text" placeholder="Ex: 1,3,5-8">
+            <span class="input-hint">Séparez les pages par des virgules. Utilisez - pour une plage.</span>
+          </div>
+
+          <div class="actions">
+            <button class="btn-primary" id="btn-split">
+              Extraire les pages
+            </button>
+          </div>
+
+          <div class="status" id="status-splitter"></div>
+        </section>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        Outil interne créée par Hugo.F — Aucune donnée transmise — Traitement 100% local
+      </footer>
+
+    </div>
+
+    <script src="libs/pdf-lib.min.js"></script>
+    <script src="libs/jszip.min.js"></script>
+    <script src="modules/imageToPdf.js"></script>
+    <script src="modules/merger.js"></script>
+    <script src="modules/splitter.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
